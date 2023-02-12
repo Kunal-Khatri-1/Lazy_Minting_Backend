@@ -28,6 +28,7 @@ module.exports = {
             blockConfirmations: 6,
             url: GOERLI_RPC_URL,
             accounts: [PRIVATE_KEY],
+            waitConfirmations: 6,
         },
         localhost: {
             chainId: 31337,
@@ -59,3 +60,11 @@ module.exports = {
         },
     },
 }
+
+task("accounts", "Prints the list of accounts", async () => {
+    const accounts = await ethers.getSigners()
+
+    for (const account of accounts) {
+        console.log(account.address)
+    }
+})
